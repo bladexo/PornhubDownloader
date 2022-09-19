@@ -4,8 +4,6 @@
 
 warning !, ini adalah bot telegram yang berisi konten dewasa, pembatasan akses untuk bot ini akan segera diterapkan, tolong jangan laporkan repositori ini dan bot contoh jika Anda tetap ingin menggunakannya.
 
-![github card](https://github-readme-stats.vercel.app/api/pin/?username=levina-lab&repo=PornHub&theme=dark)
-
 ### PORNHUB DOWNLOADER BOT
 
 Cukup cara untuk menyebarkan bot ini, gunakan di heroku.
