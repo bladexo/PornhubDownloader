@@ -18,7 +18,7 @@ Cukup cara untuk menyebarkan bot ini, gunakan di heroku.
 
 <a href="https://t.me/KyMuraa"><img src="https://img.shields.io/badge/BOT OWNER-blue?style=for-the-badge&logo=Telegram" /></a>
 <a href="https://t.me/Kyyomasaa"><img src="https://img.shields.io/badge/CHANNEL-gold?style=for-the-badge&logo=Telegram" /></a>
-<a href="https://t.me/npornhubdlbot"><img src="https://img.shields.io/badge/EXAMPLE BOT-magenta?style=for-the-badge&logo=Telegram" /></a>
+<a href="https://t.me/PH_DownloaderBot"><img src="https://img.shields.io/badge/BOT-magenta?style=for-the-badge&logo=Telegram" /></a>
 
 
 ### COMMAND FOR BOT [@PornHubBot](https://t.me/npornhubdlbot)
