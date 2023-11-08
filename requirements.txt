@@ -1,6 +1,10 @@
 python-arq
-Pyrogram
-TgCrypto
-aiohttp
 asyncio
 wget
+tgcrypto
+pyrogram
+httpx[http2]>=0.18.1,<1.0.0
+aiohttp
+psutil
+python-ffmpeg
+youtube-dl==2021.12.17
