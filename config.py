@@ -1,8 +1,8 @@
 import os
 
-TOKEN = os.environ.get("TOKEN", "")
+TOKEN = os.environ.get("TOKEN", "6846998381:AAHbbWJl65RxjcXTG1PllyDK_eZg3CMzsII")
 ARQ_API_KEY = os.environ.get("ARQ_API_KEY", "FIJROI-HUFQMF-REBCXR-EYQJFC-ARQ")
-REPO_BOT = os.environ.get("REPO_BOT", "https://t.me/Kyyomasaa")
-OWNER = os.environ.get("OWNER", "5308312798")
-BOT_NAME = os.environ.get("BOT_NAME", "")
-UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "Kyyomasaa")
+REPO_BOT = os.environ.get("REPO_BOT", "https://t.me/RedOfficiall")
+OWNER = os.environ.get("OWNER", "6434260634")
+BOT_NAME = os.environ.get("BOT_NAME", "Redrtybot")
+UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "RedOfficiall")
