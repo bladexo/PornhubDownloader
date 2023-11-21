@@ -77,7 +77,7 @@ async def repo(_, message):
 
 # Let's Go----------------------------------------------------------------------
 @app.on_message(
-    filters.private & ~filters.edited & ~filters.command("help") & ~filters.command("start") & ~filters.command("repo")
+    filters.command("help") & ~filters.command("start") & ~filters.command("repo")
     )
 async def sarch(_,message):
     try:
