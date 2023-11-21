@@ -14,7 +14,7 @@ arq = ARQ("https://thearq.tech", ARQ_API_KEY, session)
 pornhub = arq.pornhub
 phdl = arq.phdl
 
-app = Client(f"{BOT_NAME}", bot_token=f"{TOKEN}", api_id=6,
+app = Client(f"{BOT_NAME}", bot_token=f"{TOKEN}", api_id=25803426,
              api_hash="291b6bea4848d7606c0d3213c317b430")
 print("\nʙᴏᴛ ʀᴇᴀᴅʏ ᴛᴏ ᴜsᴇ\n")
 
