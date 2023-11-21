@@ -34,8 +34,7 @@ async def time_to_seconds(time):
         int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":")))
     )
 # Start  -----------------------------------------------------------------------
-@app.on_edited_message(
-    filters.command("start") & ~filters.edited
+@app.on_message(filters.command("start"))
 )
 async def start(_, message):
     m= await message.reply_text(
@@ -51,7 +50,7 @@ async def start(_, message):
 
 # Help-------------------------------------------------------------------------
 @app.on_message(
-    filters.command("help") & ~filters.edited
+    filters.command("help")
 )
 async def help(_, message):
     await message.reply_text(
