@@ -9,10 +9,11 @@ from config import OWNER, BOT_NAME, REPO_BOT, ARQ_API_KEY, UPDATES_CHANNEL, TOKE
 # Config Check-----------------------------------------------------------------
 
 # ARQ API and Bot Initialize---------------------------------------------------
-session = ClientSession()
-arq = ARQ("https://thearq.tech", ARQ_API_KEY, session)
-pornhub = arq.pornhub
-phdl = arq.phdl
+async def main():
+ session = ClientSession()
+ arq = ARQ("https://arq.hamker.dev", ARQ_API_KEY, session)
+ pornhub = arq.pornhub
+ phdl = arq.phdl
 
 app = Client(f"{BOT_NAME}", bot_token=f"{TOKEN}", api_id=25803426,
              api_hash="291b6bea4848d7606c0d3213c317b430")
