@@ -34,7 +34,7 @@ async def time_to_seconds(time):
         int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":")))
     )
 # Start  -----------------------------------------------------------------------
-@app.on_message(
+@app.on_edited_message(
     filters.command("start") & ~filters.edited
 )
 async def start(_, message):
