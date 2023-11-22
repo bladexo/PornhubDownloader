@@ -12,7 +12,7 @@ from config import OWNER, BOT_NAME, REPO_BOT, ARQ_API_KEY, UPDATES_CHANNEL, TOKE
 # ARQ API and Bot Initialize---------------------------------------------------
 async def main():
  session = ClientSession()
- arq = ARQ("https://arq.hamker.dev", ARQ_API_KEY, session)
+ arq = ARQ("https://arq.hamker.dev", "FIJROI-HUFQMF-REBCXR-EYQJFC-ARQ, session)
  pornhub = arq.pornhub
  phdl = arq.phdl
 
