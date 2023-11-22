@@ -6,7 +6,7 @@ from pyrogram.handlers import MessageHandler
 from Python_ARQ import ARQ 
 from asyncio import get_running_loop
 from wget import download
-from config import OWNER, BOT_NAME, REPO_BOT, ARQ_API_KEY, UPDATES_CHANNEL, TOKEN
+from config import OWNER, BOT_NAME, REPO_BOT, X_API_KEY, UPDATES_CHANNEL, TOKEN
 # Config Check-----------------------------------------------------------------
 
 # ARQ API and Bot Initialize---------------------------------------------------
@@ -79,7 +79,7 @@ async def repo(_, message):
 @app.on_message(
     filters.command("help") & ~filters.command("start") & ~filters.command("repo")
     )
-async def sarch(_,message):
+async def search(_,message):
     try:
         if "/" in message.text.split(None,1)[0]:
             await message.reply_text(
@@ -99,7 +99,7 @@ async def sarch(_,message):
     if not resp.ok:
         await m.edit("not found, try again")
         return
-    resolt = f"""
+    result = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[0].title}
 **⏰ ᴅᴜʀᴀᴛɪɪɴ:** {res[0].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[0].views}
@@ -168,7 +168,7 @@ async def callback_query_next(_, query):
                                          callback_data="dload")
                 ]
               ]
-    resolt = f"""
+    result = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[cur_page].title}
 **⏰ ᴅᴜʀᴀᴛɪᴏɴ:** {res[curr_page].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[cur_page].views}
@@ -222,7 +222,7 @@ async def callback_query_next(_, query):
                                          callback_data="dload")
                 ]
             ]
-    resolt = f"""
+    result = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[cur_page].title}
 **⏰ ᴅᴜʀᴀᴛɪᴏɴ:** {res[curr_page].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[cur_page].views}
@@ -246,14 +246,14 @@ async def callback_query_next(_, query):
     db[m.chat.id]['result'] = dl_links.result.video
     db[m.chat.id]['thumb'] = res[curr_page].thumbnails[0].src
     db[m.chat.id]['dur'] = res[curr_page].duration
-    resolt = f"""
+    result = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[curr_page].title}
 **⏰ ᴅᴜʀᴀᴛɪᴏɴ:** {res[curr_page].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[curr_page].views}
 **🌟 ʀᴀᴛɪɴɢ:** {res[curr_page].rating}"""
     pos = 1
     cbb = []
-    for resolts in dl_links.result.video:
+    for results in dl_links.result.video:
         b= [InlineKeyboardButton(f"{resolts.quality} - {resolts.size}", callback_data=f"phubdl {pos}")]
         pos += 1
         cbb.append(b)
