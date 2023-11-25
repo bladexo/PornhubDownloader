@@ -93,7 +93,7 @@ async def search(_,message):
         res = resp.result
     except:
      await message.reply(e)
-     await m.edit("not found: 404")
+      await m.edit("not found: 404")
         return
     if not resp.ok:
         await m.edit("not found, try again")
