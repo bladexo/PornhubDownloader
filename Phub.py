@@ -84,15 +84,15 @@ async def search(_,message):
                 "**💡 usage:**\njust type the phub video name you want to download, and this bot will send you the result."
             )
             return
-    except:
+    except Exception:
         pass
     m = await message.reply_text("getting results...")
     search = message.text
     try:
         resp = await pornhub(search,thumbsize="large")
         res = resp.result
-    except:
-     await message.reply(pornhub)
+    except Exception as e:
+     await message.reply(e)
      await m.edit("not found: 404")
      return
     if not resp.ok:
@@ -132,7 +132,7 @@ async def callback_query_next(_, query):
     m = query.message
     try:
         data = db[query.message.chat.id]
-    except:
+    except Exception:
         await m.edit("something went wrong.. **try again**")
         return
     res = data['result']
@@ -186,7 +186,7 @@ async def callback_query_next(_, query):
     m = query.message
     try:
         data = db[query.message.chat.id]
-    except:
+    except Exception:
         await m.edit("something went wrong.. **try again**")
         return
     res = data['result']
