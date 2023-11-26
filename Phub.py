@@ -1,5 +1,5 @@
 import os
-import yt-dlp
+import yt_dlp
 from aiohttp import ClientSession
 from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, InputMediaVideo
