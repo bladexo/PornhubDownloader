@@ -90,8 +90,8 @@ async def search(_,message):
     m = await message.reply_text("getting results...")
     search = message.text
     try:
-        result = await pornhub(search,thumbsize="large")
-        resp = resp.result
+        resp = await pornhub(search,thumbsize="large")
+        res = resp.result
     except Exception as e:
      await message.reply(e)
      await m.edit("not found: 404")
@@ -99,7 +99,7 @@ async def search(_,message):
     if not resp.ok:
         await m.edit("not found, try again")
         return
-    result = f"""
+    resolt = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[0].title}
 **⏰ ᴅᴜʀᴀᴛɪɪɴ:** {res[0].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[0].views}
@@ -246,7 +246,7 @@ async def callback_query_next(_, query):
     db[m.chat.id]['result'] = dl_links.result.video
     db[m.chat.id]['thumb'] = res[curr_page].thumbnails[0].src
     db[m.chat.id]['dur'] = res[curr_page].duration
-    result = f"""
+    resolt = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[curr_page].title}
 **⏰ ᴅᴜʀᴀᴛɪᴏɴ:** {res[curr_page].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[curr_page].views}
