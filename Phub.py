@@ -89,7 +89,7 @@ async def search(_,message):
     m = await message.reply_text("getting results...")
     search = message.text
     try:
-        resp = await arq.pornhub(search,thumbsize="large")
+        result = await Arq.pornhub(search,thumbsize="large")
         res = resp.result
     except Exception as e:
      await message.reply(e)
