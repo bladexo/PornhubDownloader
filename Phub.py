@@ -1,4 +1,5 @@
 import os
+import yt-dlp
 from aiohttp import ClientSession
 from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto, InputMediaVideo
@@ -15,6 +16,7 @@ session = ClientSession()
 arq = ARQ("https://arq.hamker.dev", "FIJROI-HUFQMF-REBCXR-EYQJFC-ARQ", session)
 pornhub = arq.pornhub
 phdl = arq.phdl
+ytdl = yt-dlp
 
 app = Client(f"{BOT_NAME}", bot_token=f"{TOKEN}", api_id=25803426,
              api_hash="291b6bea4848d7606c0d3213c317b430")
@@ -241,7 +243,7 @@ async def callback_query_next(_, query):
     data = db[m.chat.id]
     res = data['result']
     curr_page = int(data['curr_page'])
-    dl_links = await phdl(res[curr_page].url)
+    dl_links = await ytdl(res[curr_page].url)
     db[m.chat.id]['result'] = dl_links.result.video
     db[m.chat.id]['thumb'] = res[curr_page].thumbnails[0].src
     db[m.chat.id]['dur'] = res[curr_page].duration
