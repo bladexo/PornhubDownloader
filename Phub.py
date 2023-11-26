@@ -91,7 +91,7 @@ async def search(_,message):
     search = message.text
     try:
         result = await pornhub(search,thumbsize="large")
-        res = resp.result
+        resp = resp.result
     except Exception as e:
      await message.reply(e)
      await m.edit("not found: 404")
