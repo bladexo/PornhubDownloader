@@ -77,7 +77,7 @@ async def repo(_, message):
 
 # Let's Go----------------------------------------------------------------------
 @app.on_message(filters.private)
-async def pornhub(_,message):
+async def search(_,message):
     try:
         if "/" in message.text.split(None,1)[0]:
             await message.reply_text(
