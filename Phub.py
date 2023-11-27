@@ -176,7 +176,7 @@ async def callback_query_next(_, query):
 
     await m.edit_media(media=InputMediaPhoto(res[cur_page].thumbnails[0].src))
     await m.edit(
-        resolt,
+        result,
         reply_markup=InlineKeyboardMarkup(cbb),
         parse_mode="markdown",
     )
@@ -230,7 +230,7 @@ async def callback_query_next(_, query):
 
     await m.edit_media(media=InputMediaPhoto(res[cur_page].thumbnails[0].src))
     await m.edit(
-        resolt,
+        result,
         reply_markup=InlineKeyboardMarkup(cbb),
         parse_mode="markdown",
     )
@@ -246,7 +246,7 @@ async def callback_query_next(_, query):
     db[m.chat.id]['result'] = dl_links.result.video
     db[m.chat.id]['thumb'] = res[curr_page].thumbnails[0].src
     db[m.chat.id]['dur'] = res[curr_page].duration
-    resolt = f"""
+    result = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[curr_page].title}
 **⏰ ᴅᴜʀᴀᴛɪᴏɴ:** {res[curr_page].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[curr_page].views}
@@ -259,7 +259,7 @@ async def callback_query_next(_, query):
         cbb.append(b)
     cbb.append([InlineKeyboardButton("Delete", callback_data="delete")])
     await m.edit(
-        resolt,
+        result,
         reply_markup=InlineKeyboardMarkup(cbb),
         parse_mode="markdown",
     )
