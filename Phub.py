@@ -15,7 +15,6 @@ from config import OWNER, BOT_NAME, REPO_BOT, X_API_KEY, UPDATES_CHANNEL, TOKEN
 session = ClientSession()
 arq = ARQ("https://arq.hamker.dev", "FIJROI-HUFQMF-REBCXR-EYQJFC-ARQ", session)
 pornhub = arq.pornhub
-ytdl = yt_dlp
 
 app = Client(f"{BOT_NAME}", bot_token=f"{TOKEN}", api_id=25803426,
              api_hash="291b6bea4848d7606c0d3213c317b430")
@@ -99,7 +98,7 @@ async def search(_,message):
     if not resp.ok:
         await m.edit("not found, try again")
         return
-    resolt = f"""
+    result = f"""
 **🏷 ᴛɪᴛʟᴇ:** {res[0].title}
 **⏰ ᴅᴜʀᴀᴛɪɪɴ:** {res[0].duration}
 **👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[0].views}
@@ -107,7 +106,7 @@ async def search(_,message):
     await m.delete()
     m = await message.reply_photo(
         photo=res[0].thumbnails[0].src,
-        caption=resolt,
+        caption=result,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
