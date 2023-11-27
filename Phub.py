@@ -14,6 +14,7 @@ from config import OWNER, BOT_NAME, REPO_BOT, X_API_KEY, UPDATES_CHANNEL, TOKEN
 #async def main():
 session = ClientSession()
 arq = ARQ("https://arq.hamker.dev", "FIJROI-HUFQMF-REBCXR-EYQJFC-ARQ", session)
+pornhub = arq.pornhub
 
 app = Client(f"{BOT_NAME}", bot_token=f"{TOKEN}", api_id=25803426,
              api_hash="291b6bea4848d7606c0d3213c317b430")
