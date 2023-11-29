@@ -7,7 +7,6 @@ from pyrogram.handlers import MessageHandler
 from Python_ARQ import ARQ 
 from asyncio import get_running_loop
 from wget import download
-from ytdl.utils import DownloadError
 from config import OWNER, BOT_NAME, REPO_BOT, X_API_KEY, UPDATES_CHANNEL, TOKEN
 # Config Check-----------------------------------------------------------------
 
