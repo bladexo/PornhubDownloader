@@ -38,7 +38,7 @@ async def down_data(item):
         "nocheckcertificate": True,
     }
 
-    with YoutubeDL(ydl_opts) as ydl:
+    with ytdl(ydl_opts) as ydl:
             video = ydl.extract_info(item, download=True)
             return ydl.prepare_filename(video)
 
@@ -253,49 +253,67 @@ async def callback_query_next(_, query):
         parse_mode="markdown",
     )
 
-# Download Button--------------------------------------------------------------------------   
+# Download Button--------------------------------------------------------------------------
+@app.on_callback_query(filters.regex("dload"))
+async def callback_query_next(_, query):
+    m = query.message
+    data = db[m.chat.id]
+    res = data['result']
+    curr_page = int(data['curr_page'])
+    dl_links = await down_data(res[curr_page].url)
+    db[m.chat.id]['result'] = dl_links.result.video
+    db[m.chat.id]['thumb'] = res[curr_page].thumbnails[0].src
+    db[m.chat.id]['dur'] = res[curr_page].duration
+    result = f"""
+**🏷 ᴛɪᴛʟᴇ:** {res[curr_page].title}
+**⏰ ᴅᴜʀᴀᴛɪᴏɴ:** {res[curr_page].duration}
+**👁‍🗨 ᴠɪᴇᴡᴇʀs:** {res[curr_page].views}
+**🌟 ʀᴀᴛɪɴɢ:** {res[curr_page].rating}"""
+    pos = 1
+    cbb = []
+    for results in dl_links.result.video:
+        b= [InlineKeyboardButton(f"{resolts.quality} - {resolts.size}", callback_data=f"phubdl {pos}")]
+        pos += 1
+        cbb.append(b)
+    cbb.append([InlineKeyboardButton("Delete", callback_data="delete")])
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(cbb),
+        parse_mode="markdown",
+    )
 
+# Download Button 2--------------------------------------------------------------------------    
 @app.on_callback_query(filters.regex(r"^phubdl"))
 async def callback_query_dl(_, query):
-    pos = q.data.split("_", 1)[1]
-    msg = await q.message.edit("Downloading...")
-    user_id = q.message.from_user.id
-
-    if "some" in active:
-        await q.message.edit("Sorry, you can only download one video at a time!")
+    m = query.message
+    capsion = m.caption
+    entoty = m.caption_entities
+    await m.edit(f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ...** :\n\n{capsion}")
+    data = db[m.chat.id]
+    res = data['result']
+    curr_page = int(data['curr_page'])
+    thomb = await download_url(data['thumb'])
+    durr = await time_to_seconds(data['dur'])
+    pos = int(query.data.split()[1])
+    pos = pos-1
+    try:
+        vid = await download_url(res[pos].url)
+    except Exception as e:
+        print(e)
+        await m.edit("download error..., try again")
         return
-    else:
-        active.append(user_id)
-
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        try:
-            await run_async(ydl.download, [pos])
-        except DownloadError:
-            await q.message.edit("Sorry, an error occurred")
-            return
-
-    for file in os.listdir('.'):
-        if file.endswith(".mp4"):
-            await q.message.reply_video(
-                f"{file}",
-                thumb="downloads/src/pornhub.jpeg",
-                width=1280,
-                height=720,
-                caption="The content you requested has been successfully downloaded!",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("• Donate •", url="https://t.me/IamOkayy"),
-                        ],
-                    ],
-                ),
-            )
-            os.remove(f"{file}")
-            break
-        else:
-            continue
-
-    await msg.delete()
-    active.remove(user_id)
-
+    await m.edit(f"**ᴜᴘʟᴏᴀᴅ sᴇᴋᴀʀᴀɴɢ** :\n\n{capsion}")
+    await app.send_chat_action(m.chat.id, "upload_video")
+    await m.edit_media(media=InputMediaVideo(vid,thumb=thomb, duration=durr, supports_streaming=True))
+    await m.edit_caption(caption=capsion, caption_entities=entoty)
+    if os.path.isfile(vid):
+        os.remove(vid)
+    if os.path.isfile(thomb):
+        os.remove(thomb)
+    
+# Delete Button-------------------------------------------------------------------------- 
+@app.on_callback_query(filters.regex("delete"))
+async def callback_query_delete(_, query):
+    await query.message.delete()
+    
 app.run()
