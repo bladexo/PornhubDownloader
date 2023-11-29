@@ -274,14 +274,14 @@ async def callback_query_dl(_, query):
             await q.message.edit("Sorry, an error occurred")
             return
 
-    for file in os.listdir('.'):
+      for file in os.listdir('.'):
         if file.endswith(".mp4"):
             await q.message.reply_video(
                 f"{file}",
                 thumb="downloads/src/pornhub.jpeg",
                 width=1280,
                 height=720,
-                caption=m.caption
+                caption="The content you requested has been successfully downloaded!",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -294,5 +294,8 @@ async def callback_query_dl(_, query):
             break
         else:
             continue
+
+    await msg.delete()
+    active.remove(user_id)
 
 app.run()
