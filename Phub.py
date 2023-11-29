@@ -274,7 +274,7 @@ async def callback_query_dl(_, query):
             await q.message.edit("Sorry, an error occurred")
             return
 
-  for file in os.listdir('.'):
+    for file in os.listdir('.'):
         if file.endswith(".mp4"):
             await q.message.reply_video(
                 f"{file}",
