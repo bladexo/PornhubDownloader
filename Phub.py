@@ -37,7 +37,7 @@ async def down_data(item):
         "nocheckcertificate": True,
     }
 
-    with ytdl(ydl_opts) as ydl:
+    with ytdl.YoutubeDL(ydl_opts) as ydl:
             video = ydl.extract_info(item, download=True)
             return ydl.prepare_filename(video)
 
