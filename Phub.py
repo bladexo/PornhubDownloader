@@ -22,6 +22,24 @@ print("\nʙᴏᴛ ʀᴇᴀᴅʏ ᴛᴏ ᴜsᴇ\n")
 
 
 db = {}
+async def down_data(item):
+    ydl_opts = {
+        'format': "bestaudio/best",
+        'default_search': 'ytsearch',
+        'noplaylist': True,
+        "nocheckcertificate": True,
+        "outtmpl": f"(title)s.mp4",
+        "quiet": True,
+        "addmetadata": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+
+        "nocheckcertificate": True,
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+            video = ydl.extract_info(item, download=True)
+            return ydl.prepare_filename(video)
 
 async def download_url(url: str):
     loop = get_running_loop()
@@ -241,7 +259,7 @@ async def callback_query_next(_, query):
     data = db[m.chat.id]
     res = data['result']
     curr_page = int(data['curr_page'])
-    dl_links = await ytdl.download(res[curr_page].url)
+    dl_links = await down_data(res[curr_page].url)
     db[m.chat.id]['result'] = dl_links.result.video
     db[m.chat.id]['thumb'] = res[curr_page].thumbnails[0].src
     db[m.chat.id]['dur'] = res[curr_page].duration
